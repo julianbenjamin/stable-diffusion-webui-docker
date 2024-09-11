@@ -1,5 +1,22 @@
 FROM alpine/git:2.36.2 as download
 
+MAINTAINER "Julian Benjamin <julian.benjamin@gmail.com>"
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION=1.0
+
+LABEL org.label-schema.build-date=$BUILD_DATE \
+	org.label-schema.name="Stable Diffusion WebUI Container" \
+	org.label-schema.description="Stable Diffusion WebUI Container" \
+	org.label-schema.url="https://julianandjen.com/" \
+	org.label-schema.vcs-ref=$VCS_REF \
+	org.label-schema.vcs-url="https://hub.docker.com/r/julianbenjamin/sdweb/" \
+	org.label-schema.vendor="Julian Benjamin <julian.benjamin@gmail.com>" \
+	org.label-schema.version=$VERSION \
+	org.label-schema.schema-version="1.0" \
+	maintainer="Julian Benjamin <julian.benjamin@gmail.com>"
+
 COPY clone.sh /clone.sh
 
 RUN . /clone.sh stable-diffusion-webui-assets https://github.com/AUTOMATIC1111/stable-diffusion-webui-assets.git 6f7db241d2f8ba7457bac5ca9753331f0c266917
